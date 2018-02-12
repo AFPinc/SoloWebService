@@ -1,6 +1,5 @@
 package artyfartyparty.solowebservice.Controller;
 
-import artyfartyparty.solowebservice.Model.Request.AddUserRequest;
 import artyfartyparty.solowebservice.Model.User;
 import artyfartyparty.solowebservice.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +22,14 @@ public class UserController {
 
     @RequestMapping(value="/all", method = RequestMethod.GET)
     public List<User> findAllUsers() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        return users;
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
-    public void AddUser(@RequestBody AddUserRequest addUserRequest) {
+    public void AddUser(@RequestBody User u) {
         User user = new User();
-        user.setName(addUserRequest.getName());
+        user.setName(u.getName());
         userRepository.save(user);
     }
 }
