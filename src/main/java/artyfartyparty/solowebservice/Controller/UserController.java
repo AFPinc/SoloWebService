@@ -3,6 +3,8 @@ package artyfartyparty.solowebservice.Controller;
 import artyfartyparty.solowebservice.Model.User;
 import artyfartyparty.solowebservice.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
-    public void AddUser(@RequestBody User u) {
+    public ResponseEntity<User> AddUser(@RequestBody User u) {
         User user = new User();
         user.setName(u.getName());
         user.setAddress(u.getAddress());
@@ -37,5 +39,7 @@ public class UserController {
         user.setPhoneNumber(u.getPhoneNumber());
         user.setPassword(u.getPassword());
         userRepository.save(user);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
