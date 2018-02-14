@@ -32,6 +32,10 @@ public class UserController {
     public void AddUser(@RequestBody User u) {
         User user = new User();
         user.setName(u.getName());
+        user.setAddress(u.getAddress());
+        user.setUniMail(u.getUniMail());
+        user.setPhoneNumber(u.getPhoneNumber());
+        user.setPassword(u.getPassword());
         userRepository.save(user);
     }
 }
