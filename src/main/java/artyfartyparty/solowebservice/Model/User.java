@@ -1,8 +1,8 @@
 package artyfartyparty.solowebservice.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name="users")
 public class User {
@@ -67,4 +67,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
