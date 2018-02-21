@@ -26,7 +26,7 @@ public class Stopover {
     public void setId(long id) {
         this.id = id;
     }
-    
+
     public void setRide(Ride rides) {
         this.ride = rides;
     }
