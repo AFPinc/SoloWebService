@@ -41,7 +41,7 @@ public class RideController {
         ride.setFromDate(r.getFromDate());
         ride.setToDate(r.getToDate());
         ride.setUser(r.getUser());
-        ride.setStopovers(r.getStopovers());
+        //ride.setStopovers(r.getStopovers());
 
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
