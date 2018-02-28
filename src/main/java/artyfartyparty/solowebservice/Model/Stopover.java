@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Stopover {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "location_id")
@@ -19,11 +19,11 @@ public class Stopover {
     public Stopover() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
