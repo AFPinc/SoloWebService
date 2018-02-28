@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -55,7 +56,8 @@ public class RideController {
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
     }
-
+    
+    @ResponseBody
     private Location bla(String name) {
         Location loc = locationRepository.findByName(name);
         if (loc == null) {

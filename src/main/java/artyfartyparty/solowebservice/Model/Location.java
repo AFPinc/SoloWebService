@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 @Entity(name="location")
 public class Location {
+
     @Id
     @GeneratedValue
     private Long id;
