@@ -30,8 +30,8 @@ public class Ride {
     @JoinColumn(name = "userId")
     private User user;
 
-    //@OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    //private Set<Stopover> stopovers = new HashSet<Stopover>();
+    @OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Stopover> stopovers = new HashSet<Stopover>();
 
     public Ride() {
     }
@@ -84,11 +84,11 @@ public class Ride {
         this.user = user;
     }
 
-    /*public Set<Stopover> getStopovers() {
+    public Set<Stopover> getStopovers() {
         return stopovers;
     }
 
     public void setStopovers(Set<Stopover> stopovers) {
         this.stopovers = stopovers;
-    }*/
+    }
 }
