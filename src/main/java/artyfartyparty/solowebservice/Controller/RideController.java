@@ -1,7 +1,8 @@
 package artyfartyparty.solowebservice.Controller;
 
+import artyfartyparty.solowebservice.Model.Location;
 import artyfartyparty.solowebservice.Model.Ride;
-import artyfartyparty.solowebservice.Model.User;
+import artyfartyparty.solowebservice.Repository.LocationRepository;
 import artyfartyparty.solowebservice.Repository.RideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,12 @@ import java.util.List;
 public class RideController {
 
     private RideRepository rideRepository;
+    private LocationRepository locationRepository;
 
     @Autowired
-    public RideController(RideRepository rideRepository) {
+    public RideController(RideRepository rideRepository, LocationRepository locationRepository) {
         this.rideRepository = rideRepository;
+        this.locationRepository = locationRepository;
     }
 
 
@@ -35,9 +38,10 @@ public class RideController {
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public ResponseEntity<Ride> AddUser(@RequestBody Ride r) {
+
         Ride ride = new Ride();
-        ride.setFrom(r.getFrom());
-        ride.setTo(r.getTo());
+        ride.setFrom(locationRepository.findByName(r.getFrom().getName()));
+        ride.setTo(locationRepository.findByName(r.getTo().getName()));
         ride.setFromDate(r.getFromDate());
         ride.setToDate(r.getToDate());
         ride.setUser(r.getUser());
@@ -46,4 +50,6 @@ public class RideController {
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
     }
+
+
 }
