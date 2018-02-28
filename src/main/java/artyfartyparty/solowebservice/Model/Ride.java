@@ -10,8 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name="ride")
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Ride {
     @Id
     @GeneratedValue
