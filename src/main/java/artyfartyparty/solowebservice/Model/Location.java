@@ -11,18 +11,18 @@ import javax.persistence.Id;
 public class Location {
     @Id
     @GeneratedValue
-    private long id;
+    private Integer id;
 
     private String name;
 
     public Location() {
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
