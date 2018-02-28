@@ -1,12 +1,17 @@
 package artyfartyparty.solowebservice.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name="ride")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Ride {
     @Id
     @GeneratedValue
@@ -27,8 +32,8 @@ public class Ride {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Stopover> stopovers = new HashSet<Stopover>();
+    //@OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    //private Set<Stopover> stopovers = new HashSet<Stopover>();
 
     public Ride() {
     }
@@ -81,11 +86,11 @@ public class Ride {
         this.user = user;
     }
 
-    public Set<Stopover> getStopovers() {
+    /*public Set<Stopover> getStopovers() {
         return stopovers;
     }
 
     public void setStopovers(Set<Stopover> stopovers) {
         this.stopovers = stopovers;
-    }
+    }*/
 }
