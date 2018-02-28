@@ -1,5 +1,6 @@
 package artyfartyparty.solowebservice.Controller;
 
+import artyfartyparty.solowebservice.Model.Location;
 import artyfartyparty.solowebservice.Model.Ride;
 import artyfartyparty.solowebservice.Model.Stopover;
 import artyfartyparty.solowebservice.Repository.LocationRepository;
@@ -43,8 +44,8 @@ public class RideController {
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public ResponseEntity<Ride> AddUser(@RequestBody Ride r) {
         Ride ride = new Ride();
-        ride.setFrom(locationRepository.findByName(r.getFrom().getName()));
-        ride.setTo(locationRepository.findByName(r.getTo().getName()));
+        ride.setFrom(bla(r.getFrom().getName()));
+        ride.setTo(bla(r.getTo().getName()));
         ride.setFromDate(r.getFromDate());
         ride.setToDate(r.getToDate());
         ride.setUser(userRepository.findByName(r.getUser().getName()));
@@ -53,6 +54,17 @@ public class RideController {
 
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
+    }
+
+    private Location bla(String name) {
+        Location loc = locationRepository.findByName(name);
+        if (loc == null) {
+            Location location = new Location();
+            location.setName(name);
+            locationRepository.save(location);
+            loc = locationRepository.findByName(name);
+        }
+        return loc;
     }
 
 
