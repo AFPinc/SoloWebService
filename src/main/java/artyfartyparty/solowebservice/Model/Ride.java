@@ -13,7 +13,7 @@ import java.util.Set;
 public class Ride {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "locationFromId")
@@ -36,11 +36,11 @@ public class Ride {
     public Ride() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
