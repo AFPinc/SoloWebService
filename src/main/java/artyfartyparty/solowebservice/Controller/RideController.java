@@ -44,11 +44,11 @@ public class RideController {
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public ResponseEntity<Ride> AddUser(@RequestBody Ride r) {
         Ride ride = new Ride();
-        ride.setFrom(bla(r.getFrom().getName()));
-        ride.setTo(bla(r.getTo().getName()));
+        ride.setFrom(locationRepository.getOne((long) 1));
+        ride.setTo(locationRepository.getOne((long) 1));
         ride.setFromDate(r.getFromDate());
         ride.setToDate(r.getToDate());
-        ride.setUser(userRepository.findByName(r.getUser().getName()));
+        ride.setUser(userRepository.getOne((long) 1));
         ride.setStopovers(new HashSet<Stopover>() {
         });
 
