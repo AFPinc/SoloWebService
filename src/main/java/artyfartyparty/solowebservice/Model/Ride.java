@@ -1,6 +1,7 @@
 package artyfartyparty.solowebservice.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -26,11 +27,12 @@ public class Ride {
     private Date fromDate;
     private Date toDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "userId")
     private User user;
 
     @OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Stopover> stopovers = new HashSet<Stopover>();
 
     public Ride() {
