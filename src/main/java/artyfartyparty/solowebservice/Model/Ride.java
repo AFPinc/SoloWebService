@@ -20,12 +20,12 @@ public class Ride {
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationFromId")
     @NotNull
-    private Location from;
+    private Location locationFrom;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationToId")
     @NotNull
-    private Location to;
+    private Location locationTo;
 
     @NotNull
     private Date fromDate;
@@ -52,20 +52,20 @@ public class Ride {
         this.id = id;
     }
 
-    public Location getFrom() {
-        return from;
+    public Location getLocationFrom() {
+        return locationFrom;
     }
 
-    public void setFrom(Location from) {
-        this.from = from;
+    public void setLocationFrom(Location locationFrom) {
+        this.locationFrom = locationFrom;
     }
 
-    public Location getTo() {
-        return to;
+    public Location getLocationTo() {
+        return locationTo;
     }
 
-    public void setTo(Location to) {
-        this.to = to;
+    public void setLocationTo(Location locationTo) {
+        this.locationTo = locationTo;
     }
 
     public Date getFromDate() {
