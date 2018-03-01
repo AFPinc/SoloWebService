@@ -51,4 +51,26 @@ public class RideController {
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
     }
+
+    @RequestMapping(value="/addLocations", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Location> addLoc() {
+        Location arbaer = new Location();
+        arbaer.setName("Árbær");
+        locationRepository.save(arbaer);
+
+        Location hi = new Location();
+        hi.setName("Háskóli Íslands");
+        locationRepository.save(hi);
+
+        Location hlidar = new Location();
+        hlidar.setName("Hlíðar");
+        locationRepository.save(hlidar);
+
+        Location karsnes = new Location();
+        karsnes.setName("Kársnes");
+        locationRepository.save(karsnes);
+
+        return locationRepository.findAll();
+    }
 }
