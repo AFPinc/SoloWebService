@@ -47,13 +47,13 @@ public class RideController {
     public ResponseEntity<Ride> AddUser(@RequestBody Ride r) {
 
         if (r == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
-        if (r.getFrom() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
+        if (r.getLocationFrom() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
         //if (r.getTo() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
         //if (r.getUser() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
 
         Ride ride = new Ride();
-        ride.setFrom(bla(r.getFrom().getName()));
-        ride.setTo(bla(r.getTo().getName()));
+        ride.setLocationFrom(bla(r.getLocationFrom().getName()));
+        ride.setLocationTo(bla(r.getLocationTo().getName()));
         ride.setFromDate(r.getFromDate());
         ride.setToDate(r.getToDate());
         ride.setUser(userRepository.getOne((long) 1));
