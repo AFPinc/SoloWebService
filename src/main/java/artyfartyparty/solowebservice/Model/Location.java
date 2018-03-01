@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="location")
 public class Location {
@@ -14,6 +15,7 @@ public class Location {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String name;
 
     public Location() {

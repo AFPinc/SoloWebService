@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,17 +19,22 @@ public class Ride {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationFromId")
+    @NotNull
     private Location from;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationToId")
+    @NotNull
     private Location to;
 
+    @NotNull
     private Date fromDate;
+    @NotNull
     private Date toDate;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
+    @NotNull
     private User user;
 
     @OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

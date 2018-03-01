@@ -56,7 +56,7 @@ public class RideController {
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
     }
-    
+
     @ResponseBody
     private Location bla(String name) {
         Location loc = locationRepository.findByName(name);
@@ -68,6 +68,7 @@ public class RideController {
         }
         return loc;
     }
+
 
 
 }
