@@ -1,14 +1,11 @@
 package artyfartyparty.solowebservice.Controller;
 
-import artyfartyparty.solowebservice.Model.Location;
 import artyfartyparty.solowebservice.Model.Ride;
-import artyfartyparty.solowebservice.Model.Stopover;
 import artyfartyparty.solowebservice.Repository.LocationRepository;
 import artyfartyparty.solowebservice.Repository.RideRepository;
 import artyfartyparty.solowebservice.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 @Controller
@@ -43,34 +38,12 @@ public class RideController {
         return rides;
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/add", method = RequestMethod.POST)
     public ResponseEntity<Ride> AddUser(@RequestBody Ride ride) {
 
         if (ride == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
-    }
-
-    @RequestMapping(value="/addLocations", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Location> addLoc() {
-        Location arbaer = new Location();
-        arbaer.setName("Árbær");
-        locationRepository.save(arbaer);
-
-        Location hi = new Location();
-        hi.setName("Háskóli Íslands");
-        locationRepository.save(hi);
-
-        Location hlidar = new Location();
-        hlidar.setName("Hlíðar");
-        locationRepository.save(hlidar);
-
-        Location karsnes = new Location();
-        karsnes.setName("Kársnes");
-        locationRepository.save(karsnes);
-
-        return locationRepository.findAll();
     }
 }
