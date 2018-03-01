@@ -19,22 +19,17 @@ public class Ride {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationFromId")
-    @NotNull
     private Location locationFrom;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationToId")
-    @NotNull
     private Location locationTo;
 
-    @NotNull
     private Date fromDate;
-    @NotNull
     private Date toDate;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
-    @NotNull
     private User user;
 
     @OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
