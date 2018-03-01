@@ -46,7 +46,7 @@ public class RideController {
     public ResponseEntity<Ride> AddUser(@RequestBody Ride r) {
 
         if (r == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
-        //if (r.getFrom() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
+        if (r.getFrom() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
         //if (r.getTo() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
         //if (r.getUser() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
 
