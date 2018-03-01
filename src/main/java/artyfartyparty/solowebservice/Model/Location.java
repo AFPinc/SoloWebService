@@ -15,7 +15,6 @@ public class Location {
     @GeneratedValue
     private Long id;
 
-    @NotNull
     private String name;
 
     public Location() {
