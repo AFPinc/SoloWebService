@@ -44,38 +44,11 @@ public class RideController {
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Ride> AddUser(@RequestBody Ride r) {
+    public ResponseEntity<Ride> AddUser(@RequestBody Ride ride) {
 
-        if (r == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
-        if (r.getLocationFrom() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
-        //if (r.getTo() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
-        //if (r.getUser() == null) return new ResponseEntity<Ride>(HttpStatus.BAD_REQUEST);
-
-        Ride ride = new Ride();
-        ride.setLocationFrom(bla(r.getLocationFrom().getName()));
-        ride.setLocationTo(bla(r.getLocationTo().getName()));
-        ride.setFromDate(r.getFromDate());
-        ride.setToDate(r.getToDate());
-        ride.setUser(userRepository.getOne((long) 1));
-        ride.setStopovers(new HashSet<Stopover>() {
-        });
+        if (ride == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         rideRepository.save(ride);
         return new ResponseEntity<>(ride, HttpStatus.OK);
     }
-
-    @ResponseBody
-    private Location bla(String name) {
-        Location loc = locationRepository.findByName(name);
-        if (loc == null) {
-            Location location = new Location();
-            location.setName(name);
-            locationRepository.save(location);
-            loc = locationRepository.findByName(name);
-        }
-        return loc;
-    }
-
-
-
 }
