@@ -67,16 +67,16 @@ public class Ride {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public void setFromDate(int timestamp) {
+        this.fromDate = new Date(timestamp);
     }
 
     public Date getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
+    public void setToDate(int timestamp) {
+        this.toDate = new Date(timestamp);
     }
 
     public User getUser() {
