@@ -38,22 +38,22 @@ public class LocationController {
         a.setName("Háskóli Íslands");
         locationRepository.save(a);
 
-        a.setName("Árbær");
-        locationRepository.save(a);
+        Location b = new Location();
+        b.setName("Árbær");
+        locationRepository.save(b);
 
+        Location c = new Location();
+        c.setName("Hlíðar");
+        locationRepository.save(c);
 
-        a.setName("Hlíðar");
-        locationRepository.save(a);
+        Location d = new Location();
+        d.setName("Kársnes");
+        locationRepository.save(d);
 
+        Location e = new Location();
+        e.setName("Grafarvogur");
+        locationRepository.save(e);
 
-        a.setName("Kársnes");
-        locationRepository.save(a);
-
-        a.setName("Grafarvogur");
-        locationRepository.save(a);
-
-        a.setName("Vesturbær");
-        locationRepository.save(a);
         List<Location> locations = locationRepository.findAll();
         return locations;
     }
