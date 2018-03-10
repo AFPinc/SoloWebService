@@ -30,4 +30,31 @@ public class LocationController {
         List<Location> locations = locationRepository.findAll();
         return locations;
     }
+
+    @RequestMapping(value="/addAll", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Location> addAllLocations() {
+        Location a = new Location();
+        a.setName("Háskóli Íslands");
+        locationRepository.save(a);
+
+        a.setName("Árbær");
+        locationRepository.save(a);
+
+
+        a.setName("Hlíðar");
+        locationRepository.save(a);
+
+
+        a.setName("Kársnes");
+        locationRepository.save(a);
+
+        a.setName("Grafarvogur");
+        locationRepository.save(a);
+
+        a.setName("Vesturbær");
+        locationRepository.save(a);
+        List<Location> locations = locationRepository.findAll();
+        return locations;
+    }
 }
