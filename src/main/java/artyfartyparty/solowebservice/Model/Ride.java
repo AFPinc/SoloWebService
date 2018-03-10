@@ -21,8 +21,8 @@ public class Ride {
     @JoinColumn(name = "locationToId")
     private Location locationTo;
 
-    private int fromDate;
-    private int toDate;
+    private Long fromDate;
+    private Long toDate;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
@@ -59,19 +59,19 @@ public class Ride {
         this.locationTo = locationTo;
     }
 
-    public int getFromDate() {
+    public Long getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(int timestamp) {
+    public void setFromDate(Long timestamp) {
         this.fromDate = timestamp;
     }
 
-    public int getToDate() {
+    public Long getToDate() {
         return toDate;
     }
 
-    public void setToDate(int timestamp) {
+    public void setToDate(Long timestamp) {
         this.toDate = timestamp;
     }
 
