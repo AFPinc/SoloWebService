@@ -2,12 +2,8 @@ package artyfartyparty.solowebservice.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +21,8 @@ public class Ride {
     @JoinColumn(name = "locationToId")
     private Location locationTo;
 
-    private Date fromDate;
-    private Date toDate;
+    private int fromDate;
+    private int toDate;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
@@ -63,20 +59,20 @@ public class Ride {
         this.locationTo = locationTo;
     }
 
-    public Date getFromDate() {
+    public int getFromDate() {
         return fromDate;
     }
 
     public void setFromDate(int timestamp) {
-        this.fromDate = new Date(timestamp);
+        this.fromDate = timestamp;
     }
 
-    public Date getToDate() {
+    public int getToDate() {
         return toDate;
     }
 
     public void setToDate(int timestamp) {
-        this.toDate = new Date(timestamp);
+        this.toDate = timestamp;
     }
 
     public User getUser() {
