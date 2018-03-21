@@ -33,6 +33,13 @@ public class RideController {
         return rides;
     }
 
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Ride findOne(@PathVariable(value = "id") Long id) {
+        Ride ride = rideRepository.findOne(id);
+        return ride;
+    }
+
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public ResponseEntity<Ride> AddRide(@RequestBody Ride ride) {
 
