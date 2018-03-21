@@ -1,8 +1,9 @@
 package artyfartyparty.solowebservice.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,67 +11,68 @@ import java.util.Set;
 public class Ride {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationFromId")
-    private Location from;
+    private Location locationFrom;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "locationToId")
-    private Location to;
+    private Location locationTo;
 
-    private Date fromDate;
-    private Date toDate;
+    private Long fromDate;
+    private Long toDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
     private User user;
 
     @OneToMany(mappedBy = "ride", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Stopover> stopovers = new HashSet<Stopover>();
 
     public Ride() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Location getFrom() {
-        return from;
+    public Location getLocationFrom() {
+        return locationFrom;
     }
 
-    public void setFrom(Location from) {
-        this.from = from;
+    public void setLocationFrom(Location locationFrom) {
+        this.locationFrom = locationFrom;
     }
 
-    public Location getTo() {
-        return to;
+    public Location getLocationTo() {
+        return locationTo;
     }
 
-    public void setTo(Location to) {
-        this.to = to;
+    public void setLocationTo(Location locationTo) {
+        this.locationTo = locationTo;
     }
 
-    public Date getFromDate() {
+    public Long getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public void setFromDate(Long timestamp) {
+        this.fromDate = timestamp;
     }
 
-    public Date getToDate() {
+    public Long getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
+    public void setToDate(Long timestamp) {
+        this.toDate = timestamp;
     }
 
     public User getUser() {

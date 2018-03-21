@@ -1,25 +1,30 @@
 package artyfartyparty.solowebservice.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="location")
 public class Location {
+
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     private String name;
 
     public Location() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

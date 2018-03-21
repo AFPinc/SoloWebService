@@ -2,21 +2,21 @@ package artyfartyparty.solowebservice.Model;
 
 import javax.persistence.*;
 
-@Entity(name="stopover")
-public class Stopover {
+@Entity(name="request")
+public class Request {
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "location_id")
-    private Location location;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ride_id")
     private Ride ride;
 
-    public Stopover() {
+    public Request() {
     }
 
     public Long getId() {
@@ -27,7 +27,19 @@ public class Stopover {
         this.id = id;
     }
 
-    public void setRide(Ride rides) {
-        this.ride = rides;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Ride getRide() {
+        return ride;
+    }
+
+    public void setRide(Ride ride) {
+        this.ride = ride;
     }
 }

@@ -1,5 +1,8 @@
 package artyfartyparty.solowebservice.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String name;
     private String uniMail;
     private String Address;
@@ -27,12 +30,11 @@ public class User {
         this.name = name;
     }
 
-    public long getId() {
-
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
