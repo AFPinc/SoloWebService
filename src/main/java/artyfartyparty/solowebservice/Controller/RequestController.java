@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/location")
+@RequestMapping("/request")
 public class RequestController {
 
     private RequestRepository requestRepository;
