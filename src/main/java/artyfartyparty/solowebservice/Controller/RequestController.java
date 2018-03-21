@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/location")
 public class RequestController {
@@ -28,5 +30,11 @@ public class RequestController {
 
         requestRepository.save(request);
         return new ResponseEntity<>(request, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/all", method = RequestMethod.POST)
+    public List<Request> AllRequests() {
+
+        return requestRepository.findAll();
     }
 }
