@@ -69,4 +69,12 @@ public class RideController {
         User user = userRepository.findOne(userId);
         return rideRepository.findByUser(user);
     }
+
+    @RequestMapping(value = "/delete/{rideId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Ride> deleteRide(@PathVariable(value = "rideId") Long rideId){
+        Ride ride = rideRepository.findOne(rideId);
+        ride.setDeleted(true);
+        rideRepository.save(ride);
+        return new ResponseEntity<>(ride, HttpStatus.OK);
+    }
 }

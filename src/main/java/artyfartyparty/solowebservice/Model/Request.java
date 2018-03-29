@@ -16,6 +16,10 @@ public class Request {
     @JoinColumn(name = "ride_id")
     private Ride ride;
 
+    private boolean accepted;
+
+    private boolean rejected;
+
     public Request() {
     }
 
@@ -41,5 +45,21 @@ public class Request {
 
     public void setRide(Ride ride) {
         this.ride = ride;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
     }
 }

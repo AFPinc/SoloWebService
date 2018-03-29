@@ -32,6 +32,8 @@ public class Ride {
     @JsonIgnore
     private Set<Stopover> stopovers = new HashSet<Stopover>();
 
+    private boolean deleted;
+
     public Ride() {
     }
 
@@ -89,5 +91,13 @@ public class Ride {
 
     public void setStopovers(Set<Stopover> stopovers) {
         this.stopovers = stopovers;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
