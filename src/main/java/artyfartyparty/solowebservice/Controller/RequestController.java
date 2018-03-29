@@ -6,6 +6,7 @@ import artyfartyparty.solowebservice.Model.User;
 import artyfartyparty.solowebservice.Repository.RequestRepository;
 import artyfartyparty.solowebservice.Repository.RideRepository;
 import artyfartyparty.solowebservice.Repository.UserRepository;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +58,21 @@ public class RequestController {
     public List<Request> RequestsByRide(@PathVariable(value = "rideId") Long rideId) {
         Ride ride = rideRepository.findOne(rideId);
         return requestRepository.findByRide(ride);
+    }
+
+    @RequestMapping(value="/accept/{requestId}", method = RequestMethod.PUT)
+    public ResponseEntity<Request> AcceptRequest(@PathVariable(value="requestId") Long requestId) {
+        Request request = requestRepository.findOne(requestId);
+        request.setAccepted(true);
+        requestRepository.save(request);
+        return new ResponseEntity<>(request, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/reject/{requestId}", method = RequestMethod.PUT)
+    public ResponseEntity<Request> RejectRequest(@PathVariable(value="requestId") Long requestId) {
+        Request request = requestRepository.findOne(requestId);
+        request.setRejected(true);
+        requestRepository.save(request);
+        return new ResponseEntity<>(request, HttpStatus.OK);
     }
 }
