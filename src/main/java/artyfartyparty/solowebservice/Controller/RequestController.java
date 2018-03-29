@@ -60,17 +60,15 @@ public class RequestController {
         return requestRepository.findByRide(ride);
     }
 
-    @RequestMapping(value="/accept/{requestId}", method = RequestMethod.PUT)
-    public ResponseEntity<Request> AcceptRequest(@PathVariable(value="requestId") Long requestId) {
-        Request request = requestRepository.findOne(requestId);
+    @RequestMapping(value="/accept", method = RequestMethod.PUT)
+    public ResponseEntity<Request> AcceptRequest(@RequestBody Request request) {
         request.setAccepted(true);
         requestRepository.save(request);
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/reject/{requestId}", method = RequestMethod.PUT)
-    public ResponseEntity<Request> RejectRequest(@PathVariable(value="requestId") Long requestId) {
-        Request request = requestRepository.findOne(requestId);
+    @RequestMapping(value="/reject", method = RequestMethod.PUT)
+    public ResponseEntity<Request> RejectRequest(@RequestBody Request request) {
         request.setRejected(true);
         requestRepository.save(request);
         return new ResponseEntity<>(request, HttpStatus.OK);
