@@ -17,8 +17,8 @@ public class Request {
     private Ride ride;
 
     private boolean accepted;
-
     private boolean rejected;
+    private boolean deleted;
 
     public Request() {
     }
@@ -61,5 +61,13 @@ public class Request {
 
     public void setRejected(boolean rejected) {
         this.rejected = rejected;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
-    List<Request> findByRide(Ride ride);
+    List<Request> findByRideAndAcceptedAndRejectedAndDeleted(Ride ride, boolean accepted, boolean rejected, boolean delted);
 
-    List<Request> findByUser(User user);
+    List<Request> findByUserAndDeleted(User user, boolean deleted);
+
+
 }
