@@ -50,14 +50,21 @@ public class RequestController {
     @ResponseBody
     public List<Request> RequestsByUser(@PathVariable(value = "userId") Long userId) {
         User user = userRepository.findOne(userId);
-        return requestRepository.findByUser(user);
+        return requestRepository.findByUserAndDeleted(user, false);
     }
 
     @RequestMapping(value="/byRide/{rideId}", method = RequestMethod.GET)
     @ResponseBody
     public List<Request> RequestsByRide(@PathVariable(value = "rideId") Long rideId) {
         Ride ride = rideRepository.findOne(rideId);
-        return requestRepository.findByRide(ride);
+        return requestRepository.findByRideAndAcceptedAndRejectedAndDeleted(ride, false, false, false);
+    }
+
+    @RequestMapping(value="/byRideAccepted/{rideId}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Request> RequestsByRideAccepted(@PathVariable(value = "rideId") Long rideId) {
+        Ride ride = rideRepository.findOne(rideId);
+        return requestRepository.findByRideAndAcceptedAndRejectedAndDeleted(ride, true, false, false);
     }
 
     @RequestMapping(value="/accept", method = RequestMethod.PUT)
@@ -70,6 +77,13 @@ public class RequestController {
     @RequestMapping(value="/reject", method = RequestMethod.PUT)
     public ResponseEntity<Request> RejectRequest(@RequestBody Request request) {
         request.setRejected(true);
+        requestRepository.save(request);
+        return new ResponseEntity<>(request, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/cancel", method = RequestMethod.DELETE)
+    public ResponseEntity<Request> CancelRequest(@RequestBody Request request) {
+        request.setDeleted(true);
         requestRepository.save(request);
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
