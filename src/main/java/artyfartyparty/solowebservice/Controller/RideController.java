@@ -33,7 +33,7 @@ public class RideController {
     @RequestMapping(value="/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Ride> findAllRides() {
-        List<Ride> rides = rideRepository.findAll();
+        List<Ride> rides = rideRepository.findByDeleted(false);
         return rides;
     }
 
@@ -59,7 +59,7 @@ public class RideController {
                            @PathVariable(value = "locationToID") Long locationToId) {
         Location locationFrom = locationRepository.getOne(locationFromId);
         Location locationTo = locationRepository.getOne(locationToId);
-        List<Ride> rides = rideRepository.findByLocationFromAndLocationTo(locationFrom, locationTo);
+        List<Ride> rides = rideRepository.findByLocationFromAndLocationToAndDeleted(locationFrom, locationTo, false);
         return rides;
     }
 
@@ -67,7 +67,7 @@ public class RideController {
     @ResponseBody
     public List<Ride> RideByUser(@PathVariable(value = "userId") Long userId) {
         User user = userRepository.findOne(userId);
-        return rideRepository.findByUser(user);
+        return rideRepository.findByUserAndDeleted(user, false);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)

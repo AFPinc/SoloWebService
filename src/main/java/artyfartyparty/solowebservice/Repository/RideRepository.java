@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RideRepository extends JpaRepository<Ride, Long> {
-    List<Ride> findByLocationFromAndLocationTo(Location locationFrom, Location locationTo);
+    List<Ride> findByLocationFromAndLocationToAndDeleted(Location locationFrom, Location locationTo, boolean deleted);
 
-    List<Ride> findByUser(User user);
+    List<Ride> findByUserAndDeleted(User user, boolean deleted);
+
+    List<Ride> findByDeleted(boolean deleted);
 }
