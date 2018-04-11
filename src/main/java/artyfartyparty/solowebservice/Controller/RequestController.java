@@ -6,7 +6,6 @@ import artyfartyparty.solowebservice.Model.User;
 import artyfartyparty.solowebservice.Repository.RequestRepository;
 import artyfartyparty.solowebservice.Repository.RideRepository;
 import artyfartyparty.solowebservice.Repository.UserRepository;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
